@@ -15,6 +15,10 @@ plan <-
     # Make sure to run make(plan), not just source("make.R"), because the following 2 functions will tell
     # you whether all the files you expect are here.
     # Just change the directory as needed to wherever the files are stored.
+    # note the following about directory arguments:
+    #           (a) results/B01 should contain results from data sets where non-zero beta_j = 0.1
+    #           (b) results/B05 should contain results from data sets where non-zero beta_j = 0.5
+    # You many need to change these arguments to match the local directory where you've stored the results.
     file_names_B01 = get_file_names(directory = "results/B01",
                                     ssnet_levels_N = ssnet_levels_N$ssnet_levels_N,
                                     ssnet_names = ssnet_levels_N$ssnet_names,
