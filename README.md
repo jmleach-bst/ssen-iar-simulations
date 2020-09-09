@@ -8,7 +8,7 @@
 The University of Alabama at Birmingham’s (UAB) research computing
 resource, cheaha (<https://docs.uabgrid.uab.edu/wiki/cheaha>), was used
 to generate the simulated datasets, since generating all of them takes
-several hours. The folder `data-generation` contains `R` code and
+several hours. The folder `data-generation.zip` contains `R` code and
 scripts to generate the data. However, there are caveats. The first is
 that the scripts are specific to slurm
 (<https://docs.uabgrid.uab.edu/wiki/Slurm>), and may require editing for
@@ -30,12 +30,14 @@ slurm specific code was used to run array jobs, specifically in naming
 identifiers for each array job: `runID <-
 as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))`. This may require editing
 for use on other systems. In any case, these files are included in the
-`analyses` folder. Analyses were run using `R` version 3.6.0.
+`analyses.zip` folder. Analyses were run using `R` version 3.6.0.
 
 ## Results
 
-We’ve included the raw results of the analyses in the `results` folder.
-These are what you would obtain upon running the analyses yourself.
+Due to large file/folder sizes, the results themselves have not been
+included in this repository, but are available upon request
+(<jleach@uab.edu>). These are what you would obtain upon running the
+analyses yourself.
 
 ## Drake
 
@@ -44,6 +46,13 @@ folder, the `R` package `drake` is used to control the workflow for
 munging the results into proper form and obtaining the output for the
 paper. This can be done by running the contents of the file `make.R`,
 then running `make(plan)` in `R`.
+
+Note that the `drake` plan (`plan.R`) has several functions with
+arguments that consist of paths - you may need to change these to match
+where you’ve stored the results. We recommend to store the results in
+sub-diretories named `results/B01` when non-zero \(\beta_j = 0.1\) and
+`results/B05` when non-zero \(\beta_j = 0.5\), which would then
+necessitate no changes to path names in `plan.R`.
 
 Tables and figures from the paper and supplementary materials can be
 found in `summary_report.pdf`, and can be reproduced by kniting
