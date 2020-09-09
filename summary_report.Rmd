@@ -1,0 +1,380 @@
+---
+title: "Results Summaries"
+author: "Justin M. Leach"
+date: "8/18/2020"
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{bm}
+  - \usepackage{hyperref}
+  - \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan, citecolor=red}
+  - \DeclareMathOperator{\diag}{diag}
+output: 
+  pdf_document:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# What is it?
+
+This file will show summaries of results for the article "Incorporating Spatial Structure into Inclusion Probabilities for Bayesian Variable Selection". You'll need `drake`:
+
+```{r}
+library(drake)
+library(tidyverse)
+options(scipen = 999)
+```
+
+# Model Fitness Summary Tables
+
+## For $\beta_j = 0.1$
+```{r}
+loadd(summary_B01)
+```
+
+### Means
+
+```{r}
+mean_B01 <- summary_B01$mean[, -grep("x.*", colnames(summary_B01$mean))] %>%
+  rename(misclass = misclassification)
+mean_B01[, -c(1, 2)] <- round(mean_B01[, -c(1, 2)], digits = 4)
+mean_B01 <- mean_B01[order(mean_B01$alpha), ]
+
+# N = 25
+knitr::kable(mean_B01[mean_B01$N == "N25",])
+
+# N = 50
+knitr::kable(mean_B01[mean_B01$N == "N50",])
+
+# N = 100
+knitr::kable(mean_B01[mean_B01$N == "N100",])
+```
+
+### Medians
+
+```{r}
+median_B01 <- summary_B01$median[, -grep("x.*", colnames(summary_B01$median))] %>%
+  rename(misclass = misclassification)
+median_B01[, -c(1, 2)] <- round(median_B01[, -c(1, 2)], digits = 4)
+median_B01 <- median_B01[order(median_B01$alpha), ]
+
+# N = 25
+knitr::kable(median_B01[median_B01$N == "N25",])
+
+# N = 50
+knitr::kable(median_B01[median_B01$N == "N50",])
+
+# N = 100
+knitr::kable(median_B01[median_B01$N == "N100",])
+```
+
+### SD's
+
+```{r}
+sd_B01 <- summary_B01$sd[, -grep("x.*", colnames(summary_B01$sd))] %>%
+  rename(misclass = misclassification)
+sd_B01[, -c(1, 2)] <- round(sd_B01[, -c(1, 2)], digits = 4)
+sd_B01 <- sd_B01[order(sd_B01$alpha), ]
+
+# N = 25
+knitr::kable(sd_B01[sd_B01$N == "N25",])
+
+# N = 50
+knitr::kable(sd_B01[sd_B01$N == "N50",])
+
+# N = 100
+knitr::kable(sd_B01[sd_B01$N == "N100",])
+```
+
+### IQR's
+
+```{r}
+IQR_B01 <- summary_B01$IQR[, -grep("x.*", colnames(summary_B01$IQR))] %>% 
+  rename(misclass = misclassification)
+IQR_B01[, -c(1, 2)] <- round(IQR_B01[, -c(1, 2)], digits = 4)
+IQR_B01 <- IQR_B01[order(IQR_B01$alpha), ]
+
+# N = 25
+knitr::kable(IQR_B01[IQR_B01$N == "N25",])
+
+# N = 50
+knitr::kable(IQR_B01[IQR_B01$N == "N50",])
+
+# N = 100
+knitr::kable(IQR_B01[IQR_B01$N == "N100",])
+```
+
+### MCSE's
+
+```{r}
+mcse_B01 <- summary_B01$mcse[, -grep("x.*", colnames(summary_B01$mcse))] %>% 
+  rename(misclass = misclassification)
+mcse_B01[, -c(1, 2)] <- round(mcse_B01[, -c(1, 2)], digits = 4)
+mcse_B01 <- mcse_B01[order(mcse_B01$alpha), ]
+
+# N = 25
+knitr::kable(mcse_B01[mcse_B01$N == "N25",])
+
+# N = 50
+knitr::kable(mcse_B01[mcse_B01$N == "N50",])
+
+# N = 100
+knitr::kable(mcse_B01[mcse_B01$N == "N100",])
+```
+
+## For $\beta_j = 0.5$
+```{r}
+loadd(summary_B05)
+```
+
+### Means
+
+```{r}
+mean_B05 <- summary_B05$mean[, -grep("x.*", colnames(summary_B05$mean))] %>% 
+  rename(misclass = misclassification)
+mean_B05[, -c(1, 2)] <- round(mean_B05[, -c(1, 2)], digits = 4)
+mean_B05 <- mean_B05[order(mean_B05$alpha), ]
+
+# N = 25
+knitr::kable(mean_B05[mean_B05$N == "N25",])
+
+# N = 50
+knitr::kable(mean_B05[mean_B05$N == "N50",])
+
+# N = 100
+knitr::kable(mean_B05[mean_B05$N == "N100",])
+```
+
+### Medians
+
+```{r}
+median_B05 <- summary_B05$median[, -grep("x.*", colnames(summary_B05$median))] %>% 
+  rename(misclass = misclassification)
+median_B05[, -c(1, 2)] <- round(median_B05[, -c(1, 2)], digits = 4)
+median_B05 <- median_B05[order(median_B05$alpha), ]
+
+# N = 25
+knitr::kable(median_B05[median_B05$N == "N25",])
+
+# N = 50
+knitr::kable(median_B05[median_B05$N == "N50",])
+
+# N = 100
+knitr::kable(median_B05[median_B05$N == "N100",])
+```
+
+### SD's
+
+```{r}
+sd_B05 <- summary_B05$sd[, -grep("x.*", colnames(summary_B05$sd))] %>% 
+  rename(misclass = misclassification)
+sd_B05[, -c(1, 2)] <- round(sd_B05[, -c(1, 2)], digits = 4)
+sd_B05 <- sd_B05[order(sd_B05$alpha), ]
+
+# N = 25
+knitr::kable(sd_B05[sd_B05$N == "N25",])
+
+# N = 50
+knitr::kable(sd_B05[sd_B05$N == "N50",])
+
+# N = 100
+knitr::kable(sd_B05[sd_B05$N == "N100",])
+```
+
+### IQR's
+
+```{r}
+IQR_B05 <- summary_B05$IQR[, -grep("x.*", colnames(summary_B05$IQR))] %>% 
+  rename(misclass = misclassification)
+IQR_B05[, -c(1, 2)] <- round(IQR_B05[, -c(1, 2)], digits = 4)
+IQR_B05 <- IQR_B05[order(IQR_B05$alpha), ]
+
+# N = 25
+knitr::kable(IQR_B05[IQR_B05$N == "N25",])
+
+# N = 50
+knitr::kable(IQR_B05[IQR_B05$N == "N50",])
+
+# N = 100
+knitr::kable(IQR_B05[IQR_B05$N == "N100",])
+```
+
+### MCSE's
+
+```{r}
+mcse_B05 <- summary_B05$mcse[, -grep("x.*", colnames(summary_B05$mcse))] %>% 
+  rename(misclass = misclassification)
+mcse_B05[, -c(1, 2)] <- round(mcse_B05[, -c(1, 2)], digits = 4)
+mcse_B05 <- mcse_B05[order(mcse_B05$alpha), ]
+
+# N = 25
+knitr::kable(mcse_B05[mcse_B05$N == "N25",])
+
+# N = 50
+knitr::kable(mcse_B05[mcse_B05$N == "N50",])
+
+# N = 100
+knitr::kable(mcse_B05[mcse_B05$N == "N100",])
+```
+
+# Figures For Simulations
+
+```{r, fig.height=5, fig.width=5}
+subjchol <- sim2Dpredictr::chol_s2Dp(im.res = c(32, 32), rho = 0.90,
+                                     corr.structure = "ar1",
+                                     triangle = "lower")
+subjx <- sim2Dpredictr::sim_MVN_X(N = 10, L = subjchol$L, S = subjchol$S)
+sim2Dpredictr::inf_2D_image(B = subjx[1, ], im.res = c(32, 32), 
+                            binarize.B = FALSE, B.incl.B0 = FALSE)
+
+# image of betas
+betas <- sim2Dpredictr::beta_builder(index.type = "ellipse",
+                      w = 6, h = 6,
+                      row.index = 10, col.index = 24,
+                      B.values = 0.5, im.res = c(32, 32))
+sim2Dpredictr::inf_2D_image(B = betas$B, im.res = c(32, 32))
+```
+
+# Summarizing Parameter Estimates
+
+## Tables
+
+```{r}
+loadd(summary_by_relevance)
+
+sbr <- ungroup(summary_by_relevance) 
+
+# sbr_spike <- sbr %>% filter(ss == "spike" & metric == "mean" & beta == 0.1) %>% select(-model, -alpha, -metric, -ss)
+# sbr_spike
+# 
+# sbr_spike2 <- data.frame(Lasso = sbr_spike$est[sbr_spike$Model == "Lasso"],
+#                          SSL = sbr_spike$est[sbr_spike$Model == "SSL"],
+#                          SSLIAR = sbr_spike$est[sbr_spike$Model == "SSL (IAR)"],
+#                          EN = sbr_spike$est[sbr_spike$Model == "EN"],
+#                          SSEN = sbr_spike$est[sbr_spike$Model == "SSEN"],
+#                          SSENIAR = sbr_spike$est[sbr_spike$Model == "SSEN (IAR)"])
+# 
+# data.frame(Lasso = sbr$est[sbr$Model == "Lasso"],
+#                          SSL = sbr$est[sbr$Model == "SSL"],
+#                          SSLIAR = sbr$est[sbr$Model == "SSL (IAR)"],
+#                          EN = sbr$est[sbr$Model == "EN"],
+#                          SSEN = sbr$est[sbr$Model == "SSEN"],
+#                          SSENIAR = sbr$est[sbr$Model == "SSEN (IAR)"])
+
+sbr0 <- sbr %>% filter(Model == "Lasso")
+sbr_table <- cbind(sbr0, SSL = sbr$est[sbr$Model == "SSL"],
+                         SSLIAR = sbr$est[sbr$Model == "SSL (IAR)"],
+                         EN = sbr$est[sbr$Model == "EN"],
+                         SSEN = sbr$est[sbr$Model == "SSEN"],
+                         SSENIAR = sbr$est[sbr$Model == "SSEN (IAR)"]) %>%
+  rename(Lasso = est) %>%
+  select(-model, -alpha, -Model)
+
+sbr_table <- sbr_table[order(sbr_table$metric, sbr_table$beta, sbr_table$ss, sbr_table$N),
+          c(5, 1, 3, 4, 2, 6:10)]
+
+knitr::kable(sbr_table %>% filter(beta == 0.5 & metric == "Mean"),
+      caption = "Beta = 0.5 (Means)")
+
+knitr::kable(sbr_table %>% filter(beta == 0.1 & metric == "Mean"),
+      caption = "Beta = 0.1 (Means)")
+
+knitr::kable(sbr_table %>% filter(beta == 0.5 & metric == "SD"),
+      caption = "Beta = 0.5 (SD)")
+
+knitr::kable(sbr_table %>% filter(beta == 0.1 & metric == "SD"),
+      caption = "Beta = 0.5 (SD)")
+```
+
+## Figures
+
+```{r}
+library(ggpubr)
+
+cbpg <- c("#999999", "#E69F00", "#56B4E9", "#009E73",
+          "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
+# load necessary data frame
+loadd(summary_by_relevance)
+
+summary_by_relevance$beta_labels <- factor(summary_by_relevance$beta,
+                                           labels = c("0.1" = expression(beta[j] == 0.1),
+                                                      "0.5" = expression(beta[j] == 0.5)))
+
+```
+
+Plot for the non-zero/relevant/slab summaries:
+
+```{r}
+ggplot(data = summary_by_relevance %>% filter(ss == "slab"),
+       mapping = aes(y = est, x = N, color = Model)) + 
+  geom_point(size = 2) +
+  geom_line(size = 1) +
+  facet_grid(metric~beta_labels, scales = "free", labeller = labeller(beta_labels = label_parsed)) +
+  scale_y_continuous(name = "Summary Value"
+                     #, breaks = seq(0, 0.25, 0.05)
+                     ) +
+  scale_x_continuous(name = "Sample Size", breaks = c(25, 50, 100)) +
+  scale_color_manual(values = cbpg[-c(1, 5)]) +
+  theme(plot.title = element_text(hjust = 0.5), 
+        text = element_text(size = 16),
+        legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 2, byrow = FALSE))
+```
+
+Plot for the zero/irrelevant/spike summaries:
+
+```{r}
+ggplot(data = summary_by_relevance %>% filter(ss ==  "spike"),
+       mapping = aes(y = est, x = N, color = Model)) + 
+  geom_point(size = 2) +
+  geom_line(size = 1) +
+  facet_grid(metric~beta_labels, scales = "free", labeller = labeller(beta_labels = label_parsed)) +
+  scale_y_continuous(name = "Summary Value") +
+  scale_x_continuous(name = "Sample Size", breaks = c(25, 50, 100)) +
+  scale_color_manual(values = cbpg[-c(1, 5)]) +
+  theme(plot.title = element_text(hjust = 0.5), 
+        text = element_text(size = 16),
+        legend.position = "bottom") +
+  guides(color = guide_legend(nrow = 2, byrow = FALSE))
+```
+
+Summaries for individual parameter estimates where the relevant $\beta_j = 0.1$:
+
+```{r}
+# beta = 0.1
+loadd(prepared_for_facets_B01)
+ggplot(data = prepared_for_facets_B01, mapping = aes(x = x.label, y = only_estimates_vec)) +
+  geom_point(size = 1.25) +
+  facet_grid(ModelF ~ NF) +
+  scale_y_continuous(name = "Parameter Estimate") +
+  scale_x_discrete(name = "Parameter Index")
+
+```
+
+Summaries for individual parameter estimates where the relevant $\beta_j = 0.5$:
+
+```{r}
+loadd(prepared_for_facets_B05)
+ggplot(data = prepared_for_facets_B05, mapping = aes(x = x.label, y = only_estimates_vec)) +
+  geom_point(size = 1.25) +
+  facet_grid(ModelF ~ NF) +
+  scale_y_continuous(name = "Parameter Estimate") +
+  scale_x_discrete(name = "Parameter Index")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
