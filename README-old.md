@@ -1,14 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# What is contained herein?
-
-This repository holds code for reproducing analyses in the paper
-“Incorporating spatial structure into inclusion probabilities for
-Bayesian variable selection in generalized linear models with the
-spike-and-slab elastic net,” published in *The Journal of Statistical
-Planning and Inference* (<https://doi.org/10.1016/j.jspi.2021.07.010>).
-
 # Simulations
 
 ## Data Generation
@@ -35,19 +27,19 @@ Again, cheaha was used, and with the same caveats about slurm scripts
 and file paths, we’ve included `R` code and slurm scripts for
 reproducing the analysis results. Additionally, for the analyses some
 slurm specific code was used to run array jobs, specifically in naming
-identifiers for each array job:
-`runID <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))`. This may
-require editing for use on other systems. In any case, these files are
-included in the `analyses.zip` folder. Analyses were run using `R`
-version 3.6.0.
+identifiers for each array job: `runID <-
+as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))`. This may require editing
+for use on other systems. In any case, these files are included in the
+`analyses.zip` folder. Analyses were run using `R` version 3.6.0.
 
 ## Results
 
 Due to large file/folder sizes, the results themselves have not been
-included in this repository. These are what you would obtain upon
-running the analyses yourself.
+included in this repository, but are available upon request
+(<jleach@uab.edu>). These are what you would obtain upon running the
+analyses yourself.
 
-## `drake`
+## Drake
 
 Given the results of the analyses, i.e., the contents of the `results`
 folder, the `R` package `drake` is used to control the workflow for
@@ -58,20 +50,13 @@ then running `make(plan)` in `R`.
 Note that the `drake` plan (`plan.R`) has several functions with
 arguments that consist of paths - you may need to change these to match
 where you’ve stored the results. We recommend to store the results in
-sub-diretories named `results/B01` when non-zero *β*<sub>*j*</sub> = 0.1
-and `results/B05` when non-zero *β*<sub>*j*</sub> = 0.5, which would
-then necessitate no changes to path names in `plan.R`.
+sub-diretories named `results/B01` when non-zero \(\beta_j = 0.1\) and
+`results/B05` when non-zero \(\beta_j = 0.5\), which would then
+necessitate no changes to path names in `plan.R`.
 
 Tables and figures from the paper and supplementary materials can be
 found in `summary_report.pdf`, and can be reproduced by kniting
 `summary_report.Rmd`.
-
-### Note on `drake` (12/1/2021)
-
-It has come to pass that `drake` has been superseded by `targets` (See
-Ch. 15 in <https://books.ropensci.org/targets/drake.html>). However,
-given that this project is finished, there are no plans to update the
-code in this repository from `drake` to `targets`.
 
 # ADNI Application
 
